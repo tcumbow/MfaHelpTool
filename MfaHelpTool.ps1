@@ -61,7 +61,7 @@ function NormalMain
 
 function DefineGUI # This function contains only code copy/pasted from POSHGUI.com
 {
-    <# This form was created using POSHGUI.com  a free online gui designer for PowerShell
+<# This form was created using POSHGUI.com  a free online gui designer for PowerShell
 .NAME
     MfaHelpTool Main
 #>
@@ -88,7 +88,17 @@ $script:TextBoxUserId.height     = 20
 $script:TextBoxUserId.location   = New-Object System.Drawing.Point(15,57)
 $script:TextBoxUserId.Font       = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
 
-$script:GuiMain.controls.AddRange(@($script:LabelAnimation,$script:TextBoxUserId))
+$script:ButtonSearchForUser      = New-Object system.Windows.Forms.Button
+$script:ButtonSearchForUser.text  = "button"
+$script:ButtonSearchForUser.width  = 60
+$script:ButtonSearchForUser.height  = 30
+$script:ButtonSearchForUser.location  = New-Object System.Drawing.Point(229,46)
+$script:ButtonSearchForUser.Font  = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
+
+$script:GuiMain.controls.AddRange(@($script:LabelAnimation,$script:TextBoxUserId,$script:ButtonSearchForUser))
+
+$script:ButtonSearchForUser.Add_Click({ ButtonSearchForUserClicked })
+
 
 }
 
@@ -105,7 +115,7 @@ function CustomizeGUI
     $stream.Write($iconBytes, 0, $iconBytes.Length);
     $script:GuiMain.Icon       = [System.Drawing.Icon]::FromHandle((New-Object System.Drawing.Bitmap -Argument $stream).GetHIcon())
 
-    
+
 }
 
 function PopGuiOnTop {
@@ -130,6 +140,14 @@ function PopGuiOnTop {
     $script:GuiMain.TopMost = $false
     [System.Windows.Forms.Application]::DoEvents()
 }
+
+
+
+function ButtonSearchForUserClicked
+{
+    $script:TextBoxUserId.Text = "blarg"
+}
+
 
 
 
