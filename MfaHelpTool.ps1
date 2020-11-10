@@ -20,44 +20,46 @@ function UnitTest2
 
 function NormalMain
 {
-    DefineGUI #creates several script-wide WinForms elements
+    DefineGUI # creates several script-wide WinForms elements via code that's copy/pasted from POSHGUI
+    CustomizeGUI # tweaks to the WinForms elements that weren't copy/pasted from POSHGUI
     $script:GuiMain.Show()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    Sleep 1; [System.Windows.Forms.Application]::DoEvents()
-    
+    PopGuiOnTop
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    Sleep -Milliseconds 300; [System.Windows.Forms.Application]::DoEvents()
+    $script:GuiMain.Dispose()
 }
 
-function DefineGUI
+function DefineGUI # This function contains only code copy/pasted from POSHGUI.com
 {
     <# This form was created using POSHGUI.com  a free online gui designer for PowerShell
 .NAME
@@ -88,10 +90,46 @@ $script:TextBoxUserId.Font       = New-Object System.Drawing.Font('Microsoft San
 
 $script:GuiMain.controls.AddRange(@($script:LabelAnimation,$script:TextBoxUserId))
 
-
-
 }
 
+function CustomizeGUI
+{
+    $script:GuiMain.ControlBox = $false
+    $script:GuiMain.FormBorderStyle = 'Fixed3D'
+    $script:GuiMain.StartPosition = "CenterScreen"
+
+    # This base64 string holds the bytes that make up the Dart cup icon
+    $iconBase64      = 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAjJJREFUOE+V0W1IE3EcB3DrRRREb3oT9SJ60wtfWCg9QSD4opQeQCmiFoNeNCRardIXQ8IecGWYBWJORbK51WymbGk+bNN5JattNxPW2O3Odnu+p+32v7vdbb7qQFLvVQRf+L35fuDH71dRUW38v6yPqqsfz9xzXHo6qTMuPLf5uyfg1nfQuSejx+8PndKZarVjR1Q2BdD2es52jFa1DVzuGWuxzLWYnRdf2/bd7tx15cGeJl1lc1eTwa4A4wHs5bTvjsWlt86/mvL1OuH2CejGoP16j1XzxmYY91i8EQWwQqjrV9yDpOAYjRBsMi9kCgLBiSQnJnNCJMvOwQkF0Bt/fAnGnKE4FM3+TNJRgl2lQIzmftMcQoIARncMwwqgfjQ/E4x70WwwkYtSIFMoMkKJKZYIIMbzgi9Kap4tKkBds2PEiXixzEoihzM8w5eAuMZJazKTwWcv3nB3SgEON37oNC8vYdkgzshr0LwEpDIQyxQv4Xmh3x4+ek151t2nh7RdX5fQLJygMArIPbldEMsEL2IMp+/7vrduWAG21RgbW2e+RTIBnEJlwInyPusgSgLVQ9f2mn4FkHNM/WnSh/tiJEoCmheBWGKL5QyQ/Kt0rebv17aC/fWmPkcIiqRD6Zx8JVaQGF6KUdx7N3rogmWjtgl2nBhQP3a/dYcXwimMKKRyPJJmZ4PxmwbPzpODG7VNIOdA/Yiq3dltW5n1JxaX06Zp5NYL6OB589aOAvw71cY/wbikwSqtN2EAAAAASUVORK5CYII='
+    $iconBytes       = [Convert]::FromBase64String($iconBase64)
+    $stream          = New-Object IO.MemoryStream($iconBytes, 0, $iconBytes.Length)
+    $stream.Write($iconBytes, 0, $iconBytes.Length);
+    $script:GuiMain.Icon       = [System.Drawing.Icon]::FromHandle((New-Object System.Drawing.Bitmap -Argument $stream).GetHIcon())
+
+    
+}
+
+function PopGuiOnTop {
+    # $Button1TGModal.Enabled = $false
+    # $Button2TGModal.Enabled = $false
+    # $Button3TGModal.Enabled = $false
+    $script:GuiMain.TopMost = $true
+    # $LastPopUp = GetUnixTimestamp
+    # Start-Sleep -Milliseconds 300
+    # [System.Windows.Forms.Application]::DoEvents()
+    # Start-Sleep -Milliseconds 300
+    # [System.Windows.Forms.Application]::DoEvents()
+    # Start-Sleep -Milliseconds 300
+    # [System.Windows.Forms.Application]::DoEvents()
+    Start-Sleep -Milliseconds 300
+    [System.Windows.Forms.Application]::DoEvents()
+    Start-Sleep -Milliseconds 300
+    [System.Windows.Forms.Application]::DoEvents()
+    # $Button1TGModal.Enabled = $true
+    # $Button2TGModal.Enabled = $true
+    # $Button3TGModal.Enabled = $true
+    $script:GuiMain.TopMost = $false
+    [System.Windows.Forms.Application]::DoEvents()
+}
 
 
 
