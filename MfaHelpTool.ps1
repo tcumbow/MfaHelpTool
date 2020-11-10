@@ -1,9 +1,9 @@
 
 
 # Execution starts in the Main function below
+$ScriptMode=$args[0]
 function Main
 {
-    $ScriptMode=$args[0]
     if($ScriptMode -eq "UnitTest1") {return UnitTest1}
     elseif($ScriptMode -eq "UnitTest2") {return UnitTest2}
     else {return NormalMain}
@@ -11,7 +11,7 @@ function Main
 
 function UnitTest1
 {
-    
+    Write-Host "Blarg"
 }
 function UnitTest2
 {
@@ -21,7 +21,7 @@ function UnitTest2
 function NormalMain
 {
     DefineGUI #creates several script-wide WinForms elements
-    $script:GuiMain.Display()
+    $script:GuiMain.Show()
     Sleep 1; [System.Windows.Forms.Application]::DoEvents()
     Sleep 1; [System.Windows.Forms.Application]::DoEvents()
     Sleep 1; [System.Windows.Forms.Application]::DoEvents()
@@ -91,3 +91,8 @@ $script:GuiMain.controls.AddRange(@($script:LabelAnimation,$script:TextBoxUserId
 
 
 }
+
+
+
+
+return Main
